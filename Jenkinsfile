@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven-3.9.6'
+    }
     stages {
         stage('Checkout Stage') {
             steps {
@@ -9,7 +12,7 @@ pipeline {
                             extensions: [],
                             userRemoteConfigs: [[credentialsId: 'git',
                             url: 'https://github.com/Enexse/ees-intranet-ms-accounting.git']]])
-                bat 'mvn clean install -DskipTests=true'
+                sh 'mvn clean install -DskipTests=true'
             }
         }
         stage('Build Docker Image Stage') {
