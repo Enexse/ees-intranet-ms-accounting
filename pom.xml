@@ -15,8 +15,6 @@
 	<description>Enexse Intranet Timesheets Microservice</description>
 	<properties>
 		<java.version>15</java.version>
-		<maven.compiler.source>15</maven.compiler.source>
-    	<maven.compiler.target>15</maven.compiler.target>
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 		<keycloak.version>18.0.1</keycloak.version>
 	</properties>
@@ -109,7 +107,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>3.2.1</version>
 				<configuration>
 					<excludes>
 						<exclude>
@@ -117,6 +114,13 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<release>${java.version}</release>
 				</configuration>
 			</plugin>
 		</plugins>
