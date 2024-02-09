@@ -1,8 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'maven-3.9.6',
-        docker 'node:16-alpine'
+        maven 'maven-3.9.6'
     }
     stages {
         stage('Checkout Stage') {
