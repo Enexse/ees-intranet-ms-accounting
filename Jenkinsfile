@@ -5,7 +5,7 @@ pipeline {
             steps {
             //git credentialsId: 'bitbucket', url: 'https://EnExSe@bitbucket.org/enexse/ees-intranet-ms-accounting.git', branch: 'feature/dockerization'
             checkout([$class: 'GitSCM',
-                            branches: [[name: '*/feature/dockerization']],
+                            branches: [[name: '*/main']],
                             extensions: [],
                             userRemoteConfigs: [[credentialsId: 'git',
                             url: 'https://github.com/Enexse/ees-intranet-ms-accounting.git']]])
