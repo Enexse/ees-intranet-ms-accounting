@@ -1,4 +1,4 @@
-ARG JAVA_VERSION=17
+ARG JAVA_VERSION=15
 FROM openjdk:${JAVA_VERSION}
 COPY target/ees-intranet-ms-accounting.jar ees-intranet-ms-accounting.jar
 EXPOSE 9191
