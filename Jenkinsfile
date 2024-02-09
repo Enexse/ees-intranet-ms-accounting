@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:16-alpine' }
+    }
     tools {
         maven 'maven-3.9.6'
     }
@@ -17,9 +19,7 @@ pipeline {
         }
         stage('Build Docker Image Stage') {
             steps {
-                script {
-                    sh 'docker build -t enexse/ees-ms-accounting .'
-                }
+                sh 'docker build -t enexse/ees-ms-accounting .'
             }
         }
         stage('Push Docker Image Stage') {
