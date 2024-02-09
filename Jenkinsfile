@@ -17,7 +17,9 @@ pipeline {
         }
         stage('Build Docker Image Stage') {
             steps {
-                bat 'docker build -t enexse/ees-ms-accounting .'
+                script {
+                    sh 'docker build -t enexse/ees-ms-accounting .'
+                }
             }
         }
         stage('Push Docker Image Stage') {
