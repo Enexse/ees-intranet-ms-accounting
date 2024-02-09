@@ -14,8 +14,6 @@
 	<name>ees-ms-timesheets</name>
 	<description>Enexse Intranet Timesheets Microservice</description>
 	<properties>
-		<maven.compiler.release>17</maven.compiler.release>
-		<java.version>15</java.version>
 		<spring-cloud.version>2021.0.3</spring-cloud.version>
 		<keycloak.version>18.0.1</keycloak.version>
 	</properties>
@@ -115,14 +113,6 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.12.1</version>
-				<configuration>
-					<release>1.8</release>
 				</configuration>
 			</plugin>
 		</plugins>
