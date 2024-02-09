@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        maven '3.9.5'
-    }
     stages {
         stage('Checkout Stage') {
             steps {
@@ -10,8 +7,8 @@ pipeline {
             checkout([$class: 'GitSCM',
                             branches: [[name: '*/feature/dockerization']],
                             extensions: [],
-                            userRemoteConfigs: [[credentialsId: 'bitbucket',
-                            url: 'https://EnExSe@bitbucket.org/enexse/ees-intranet-ms-accounting.git']]])
+                            userRemoteConfigs: [[credentialsId: 'git',
+                            url: 'https://github.com/Enexse/ees-intranet-ms-accounting.git']]])
                 sh 'mvn clean install -DskipTests=true'
             }
         }
