@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'maven-3.9.6'
+        docker 'docker'
     }
     stages {
         stage('Checkout Stage') {
