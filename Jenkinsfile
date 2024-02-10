@@ -2,7 +2,6 @@ pipeline {
     agent any
     tools {
         maven 'maven-3.9.6'
-        'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
     }
     stages {
         stage('Checkout Stage') {
@@ -18,12 +17,7 @@ pipeline {
         }
         stage('Build Docker Image Stage') {
             steps {
-                docker.withTool('docker'){
-    docker.withRegistry('repo','credentials') { 
                 sh 'docker build -t enexse/ees-ms-accounting .'
-    }
-}
-        
             }
         }
         stage('Push Docker Image Stage') {
