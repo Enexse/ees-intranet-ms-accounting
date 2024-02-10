@@ -18,7 +18,12 @@ pipeline {
         }
         stage('Build Docker Image Stage') {
             steps {
+                docker.withTool('docker'){
+    docker.withRegistry('repo','credentials') { 
                 sh 'docker build -t enexse/ees-ms-accounting .'
+    }
+}
+        
             }
         }
         stage('Push Docker Image Stage') {
