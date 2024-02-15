@@ -17,18 +17,18 @@ pipeline {
                             url: 'https://github.com/Enexse/ees-intranet-ms-accounting.git']]])
                 sh 'mvn clean install -DskipTests=true'
             }
-        }
-        stage('Build Docker Image Stage') {
-            steps {
-                sh 'docker build -t enexse/ees-ms-accounting .'
-            }
-        }
-        stage('Push Docker Image Stage') {
-            steps {
-                sh 'docker login -u enexse -p Softwares@1234*'
-                sh 'docker push enexse/ees-ms-accounting'
-            }
-        }
+        // }
+        // stage('Build Docker Image Stage') {
+        //     steps {
+        //         sh 'docker build -t enexse/ees-ms-accounting .'
+        //     }
+        // }
+        // stage('Push Docker Image Stage') {
+        //     steps {
+        //         sh 'docker login -u enexse -p Softwares@1234*'
+        //         sh 'docker push enexse/ees-ms-accounting'
+        //     }
+        // }
         stage('Deploy to GKE Stage') {
             steps {
                 //sh "sed -i 's/tagversion/${env.PROJECT_ID}/g' k8s/deployment.yaml"
