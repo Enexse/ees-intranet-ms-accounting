@@ -3,6 +3,9 @@ pipeline {
     tools {
         maven 'maven-3.9.6'
     }
+    environment {
+        PATH = "/usr/local/bin:$PATH"
+    }
     stages {
         stage('Checkout Stage') {
             steps {
