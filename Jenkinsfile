@@ -17,7 +17,7 @@ pipeline {
                             url: 'https://github.com/Enexse/ees-intranet-ms-accounting.git']]])
                 sh 'mvn clean install -DskipTests=true'
             }
-        // }
+        }
         // stage('Build Docker Image Stage') {
         //     steps {
         //         sh 'docker build -t enexse/ees-ms-accounting .'
