@@ -8,6 +8,7 @@ spec:
   selector:
     matchLabels:
       app: ees-ms-accounting-app
+  replicas: 3 # Number of replicas that will be created for this deployment
   template:
     metadata:
       labels:
@@ -15,7 +16,7 @@ spec:
     spec:
       containers:
       - name: ees-ms-accounting-app
-        image: enexse/ees-ms-accounting-app:latest # Image that will be used to containers in the cluster
+        image: enexse/ees-ms-accounting:latest # Image that will be used to containers in the cluster
         imagePullPolicy: Always
         ports:
         - containerPort: 9191 # The port that the container is running on in the cluster
