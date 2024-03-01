@@ -32,8 +32,9 @@ pipeline {
         // }
         stage('Deploy to GKE Stage') {
             steps {
-                sh "sed -i 's/tagversion/${env.PROJECT_ID}/g' k8s/deployment.yaml"
+                //sh "sed -i 's/tagversion/${env.PROJECT_ID}/g' k8s/deployment.yaml"
                 //sh "sed -i 's|enexse|${repourl}|g' k8s/deployment.yaml"
+                sh 'kubectl apply -f k8s/deployment.yaml'
                 step([$class: 'KubernetesEngineBuilder',
                     projectId: env.PROJECT_ID,
                     clusterName: env.CLUSTER,
