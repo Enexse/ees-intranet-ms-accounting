@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: ees-ms-accounting-app
-  replicas: 3 # Number of replicas that will be created for this deployment
+  replicas: 1 # Number of replicas that will be created for this deployment
   template:
     metadata:
       labels:
