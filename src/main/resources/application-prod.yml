@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://postgresql-enexse-u12566.vm.elestio.app:25432/ees_ms_accounting
+    username: postgres
+    password: QLyDmxqF-SLej-Nwf7f6pZ
+    driver-class-name: org.postgresql.Driver
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    hostname: localhost
+
+#Keycloack
+keycloak:
+  realm: ees-ms-authentification
+  auth-server-url: https://keycloak-enexse-u12566.vm.elestio.app/
+  resource: ees-ms-keycloak
+  credentials:
+    secret: JbkQ9O7KpRc0HOUVJNOw5TY8dJQT4W4V
+  use-resource-role-mappings: false
+  bearer-only: true

@@ -3,11 +3,8 @@ server:
 spring:
   main:
     allow-bean-definition-overriding: true
-  datasource:
-    url: jdbc:postgresql://postgresql-enexse-u12566.vm.elestio.app:25432/ees_ms_accounting #jdbc:postgresql://localhost:5432/ees_ms_accounting
-    username: postgres
-    password: QLyDmxqF-SLej-Nwf7f6pZ #postgres
-    driver-class-name: org.postgresql.Driver
+  profiles:
+    - prod
   application:
     name: EES-MS-ACCOUNTING
   jpa:
@@ -18,29 +15,11 @@ spring:
       hibernate:
         format_sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-    fetch-registry: true
-    register-with-eureka: true
-  instance:
-    hostname: localhost
 
 logging:
   level:
     org.springframework.web: DEBUG
     org.hibernate.sql: DEBUG
-
-#Keycloack
-keycloak:
-  realm: ees-ms-authentification
-  auth-server-url: https://keycloak-enexse-u12566.vm.elestio.app/ #http://localhost:8080
-  resource: ees-ms-keycloak
-  credentials:
-    secret: JbkQ9O7KpRc0HOUVJNOw5TY8dJQT4W4V #trKdGRGFZIJ5RF6jjuJQGZMGLQI6dzku
-  use-resource-role-mappings: false
-  bearer-only: true
 
 info:
   app:
