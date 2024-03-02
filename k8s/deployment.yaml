@@ -15,51 +15,27 @@ spec:
         app: ees-ms-accounting-app
     spec:
       containers:
+      - name: postgres
+        image: postgres:16
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRES_DB
+            value: "ees_ms_accounting"
+          - name: POSTGRES_HOST
+            value: "postgresql-enexse-u12566.vm.elestio.app"
+          - name: POSTGRES_PORT
+            value: "25432"
+          - name: POSTGRES_USER
+            value: "postgres"
+          - name: POSTGRES_PASSWORD
+            value: "QLyDmxqF-SLej-Nwf7f6pZ"
       - name: ees-ms-accounting-app
         image: enexse/ees-ms-accounting:latest # Image that will be used to containers in the cluster
         args: ["--spring.profiles.active=prod"]
-        depends_on: 
-          - postgres-app
         imagePullPolicy: Always
         ports:
         - containerPort: 9191 # The port that the container is running on in the cluster
-
----
-
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: postgres-app
-  labels:
-    app: postgres-app
-spec:
-  selector:
-    matchLabels:
-      app: postgres-app
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: postgres-app
-    spec:
-      containers:
-        - name: postgres
-          image: postgres:16
-          ports:
-            - containerPort: 5432
-          env:
-            - name: POSTGRES_DB
-              value: "ees_ms_accounting"
-            - name: POSTGRES_HOST
-              value: "postgresql-enexse-u12566.vm.elestio.app"
-            - name: POSTGRES_PORT
-              value: "25432"
-            - name: POSTGRES_USER
-              value: "postgres"
-            - name: POSTGRES_PASSWORD
-              value: "QLyDmxqF-SLej-Nwf7f6pZ"
-      # volumes:
-      #   - 'pgdata:/var/lib/postgresql/data'
 
 ---
 
@@ -76,15 +52,3 @@ spec:
       targetPort: 9191 # The port exposed by the service
   type: ClusterIP # type of the service.
 
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: postgres-svc
-spec:
-  selector:
-    app: postgres-app
-  type: ClusterIP
-  ports:
-    - port: 5432
