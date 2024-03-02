@@ -27,13 +27,14 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
-spec:
+  name: postgres-app
+  labels:
+    app: postgres-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: postgres
+        app: postgres-app
     spec:
       containers:
         - name: postgres
@@ -81,8 +82,8 @@ kind: Service
 metadata:
   name: postgres-svc
 spec:
+  selector:
+    app: postgres-app
   type: ClusterIP
   ports:
     - port: 5432
-  selector:
-    app: postgres
