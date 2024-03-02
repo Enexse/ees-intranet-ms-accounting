@@ -21,8 +21,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9191 # The port that the container is running on in the cluster
-    depends_on:
-      - postgres
+
 ---
 
 apiVersion: apps/v1
@@ -43,18 +42,18 @@ spec:
             - containerPort: 5432
           env:
             - name: POSTGRES_DB
-              value: 'ees_ms_accounting'
+              value: "ees_ms_accounting"
             - name: POSTGRES_HOST
-              value: 'postgresql-enexse-u12566.vm.elestio.app'
+              value: "postgresql-enexse-u12566.vm.elestio.app"
             - name: POSTGRES_PORT
-              value: 25432
+              value: "25432"
             - name: POSTGRES_USER
-              value: 'postgres'
+              value: "postgres"
             - name: POSTGRES_PASSWORD
-              value: 'QLyDmxqF-SLej-Nwf7f6pZ'
+              value: "QLyDmxqF-SLej-Nwf7f6pZ"
           volumeMounts:
             - mountPath: "/var/lib/postgresql/data"
-              name: "mendix-pgdata"
+              name: "enexse-pgdata"
       volumes:
         - hostPath:
             path: "/home/docker/pgdata"
