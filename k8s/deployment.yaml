@@ -21,8 +21,8 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9191 # The port that the container is running on in the cluster
-      depends_on:
-        - postgres
+    depends_on:
+      - postgres
 ---
 
 apiVersion: apps/v1
