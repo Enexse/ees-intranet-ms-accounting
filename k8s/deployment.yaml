@@ -56,13 +56,8 @@ spec:
               value: "postgres"
             - name: POSTGRES_PASSWORD
               value: "QLyDmxqF-SLej-Nwf7f6pZ"
-          volumeMounts:
-            - mountPath: "/var/lib/postgresql/data"
-              name: "enexse-pgdata"
-      volumes:
-        - hostPath:
-            path: "/home/docker/pgdata"
-          name: enexse-pgdata
+          volumes:
+            - pgdata:/var/lib/postgresql/data
 
 ---
 
