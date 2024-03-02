@@ -30,6 +30,10 @@ metadata:
   name: postgres-app
   labels:
     app: postgres-app
+spec:
+  # selector:
+  #   matchLabels:
+  #     app: postgres-app
   replicas: 1
   template:
     metadata:
