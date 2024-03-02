@@ -17,6 +17,7 @@ spec:
       containers:
       - name: ees-ms-accounting-app
         image: enexse/ees-ms-accounting:latest # Image that will be used to containers in the cluster
+        args: ["--spring.profiles.active=prod"]
         imagePullPolicy: Always
         ports:
         - containerPort: 9191 # The port that the container is running on in the cluster
