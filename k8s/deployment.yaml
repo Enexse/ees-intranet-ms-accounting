@@ -56,8 +56,8 @@ spec:
               value: "postgres"
             - name: POSTGRES_PASSWORD
               value: "QLyDmxqF-SLej-Nwf7f6pZ"
-          volumes:
-            - pgdata:/var/lib/postgresql/data
+      volumes:
+        - pgdata:/var/lib/postgresql/data
 
 ---
 
