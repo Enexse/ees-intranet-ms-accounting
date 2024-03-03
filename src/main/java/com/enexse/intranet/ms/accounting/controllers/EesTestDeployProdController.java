@@ -26,7 +26,7 @@ public class EesTestDeployProdController {
         return "Hello World";
     }
 
-    @GetMapping(EesTimesheetEndpoint.EES_GET_All_TIMESHEET_CONTRACTHOURS)
+    @GetMapping("/contractHours")
     public List<EesTimesheetContractHour> eesGetAllTimeSheetContractHours() {
         List<EesTimesheetContractHour> contractHours = contractHoursRepository.findAll();
         return contractHours;
