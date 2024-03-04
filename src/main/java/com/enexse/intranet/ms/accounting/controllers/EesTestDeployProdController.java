@@ -23,7 +23,7 @@ public class EesTestDeployProdController {
 
     @GetMapping("/test")
     public String getMessage() {
-        return "Hello World";
+        return "Hello World Accounting Service";
     }
 
     @GetMapping("/contractHours")
