@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +20,8 @@ public class EesUserTimeSheetRequest {
     private String businessManagerClient;
     private String numAffair;
     private String numOrder;
-    private String projectName;
+    //private String projectName;
+    private List<String> projects;
     private String customerId;
     private Long activityId;
     private Long contractHoursClientId;

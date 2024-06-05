@@ -28,9 +28,14 @@ public class EesTimeSheetActivity {
     private String activityObservation;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "activity")
+    @OneToMany(mappedBy = "activity", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<EesTimesheetAppointment> appointments;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "timeSheetActivity", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<EesUserTimeSheet> userTimeSheets;
 
     @Column(name = "createdAt")
     private String createdAt;

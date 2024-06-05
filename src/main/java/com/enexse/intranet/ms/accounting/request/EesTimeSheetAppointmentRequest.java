@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -28,4 +29,9 @@ public class EesTimeSheetAppointmentRequest {
     private Long contractHoursId;
     private Date startDateTime;
     private Date endDateTime;
+    private String team;
+    private String slotTime;
+    private String entryTime;
+    private BigDecimal breakTime;
+    private String exitTime;
 }

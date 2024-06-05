@@ -53,8 +53,13 @@ public class EesTimesheetResponse {
 
     // TIMESHEET APPOINTMENT
     public static final String EES_TIMESHEET_APPOINTMENT_CREATED = "TimeSheet appointment saved successfully.";
+    public static final String EES_MASSIVE_TIMESHEET_APPOINTMENT_CREATED = "Massive TimeSheet appointment saved successfully.";
     public static final String EES_TIMESHEET_APPOINTMENT_DELETED = "TimeSheet appointment deleted successfully.";
     public static final String EES_TIMESHEET_APPOINTMENT_UPDATED = "TimeSheet appointment updated successfully.";
     public static final String EES_TIMESHEET_APPOINTMENT_NOT_FOUND = "TimeSheet appointment not found with id = %s";
     public static final String EES_TIMESHEET_APPOINTMENT_SUBMIT = "TimeSheet appointment submitted successfully.";
+
+    // TIMESHEET SUMMARY
+    public static final String EES_TIMESHEET_SUMMARY_NOT_FOUND = "TimeSheet summary not found with userId = %s";
+    public static final String EES_TIMESHEET_SUMMARY_UPDATED = "TimeSheet summary updated successfully.";
 }

@@ -1,11 +1,10 @@
 package com.enexse.intranet.ms.accounting.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -72,4 +71,12 @@ public class EesSummaryTimesheet {
 
     @Column(name = "updatedAt")
     private String updatedAt;
+
+    @Column(name = "sentAt")
+    private String sentAt;
+
+    //@ToString.Exclude
+    @ManyToMany(mappedBy = "summaryId", cascade = CascadeType.ALL)
+    //@JsonIgnore
+    private List<EesTimesheetDoc> attachments;
 }

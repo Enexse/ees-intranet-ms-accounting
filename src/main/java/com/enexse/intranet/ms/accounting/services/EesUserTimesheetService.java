@@ -14,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -27,6 +30,7 @@ public class EesUserTimesheetService {
     private EesTimesheetContractHourRepository contractHoursRepository;
     private EesUserTimeSheetRepository userTimeSheetRepository;
     private EesSummaryTimesheetRepository eesSummaryTimesheetRepository;
+    private EesTimesheetProjectRepository projectRepository;
 
     @Transactional
     public ResponseEntity<Object> updateUser(String userId, EesUserTimeSheetRequest request) {
@@ -35,7 +39,7 @@ public class EesUserTimesheetService {
         if (user != null) {
             Optional<EesTimeSheetActivity> activity = activityRepository.findById(request.getActivityId());
             Optional<EesTimesheetWorkplace> workplace = workplaceRepository.findById(request.getWorkplaceId());
-            Optional<EesTimeSheetWorkTime> worktime = worktimeRepository.findById(request.getWorktimeId());
+            Optional<EesTimeSheetWorkTime> workTime = worktimeRepository.findById(request.getWorktimeId());
             Optional<EesTimesheetContractHour> contractHoursClient = contractHoursRepository.findById(request.getContractHoursClientId());
             Optional<EesTimesheetContractHour> contractHoursEnexse = contractHoursRepository.findById(request.getContractHoursEnexseId());
             Optional<EesUserTimeSheet> userTimeSheetOptional = userTimeSheetRepository.findByUserId(userId);
@@ -56,16 +60,36 @@ public class EesUserTimesheetService {
             userTimeSheet.setCustomerId(request.getCustomerId());
             userTimeSheet.setTimeSheetActivity(activity.get());
             userTimeSheet.setWorkplace(workplace.get());
-            userTimeSheet.setWorktime(worktime.get());
+            userTimeSheet.setWorktime(workTime.get());
             userTimeSheet.setContractHoursClient(contractHoursClient.get());
             userTimeSheet.setContractHoursEnexse(contractHoursEnexse.get());
-            userTimeSheet.setProjectName(request.getProjectName());
+            //userTimeSheet.setProjectName(request.getProjectName());
 
+            // Save projects information
+            List<EesTimesheetProject> projects = projectRepository.findAllByUserId(userId);
+            if (projects.size() == 0) {
+                List<EesTimesheetProject> newProjects = new ArrayList<EesTimesheetProject>();
+                request.getProjects().stream().forEach(project ->
+                        newProjects.add(new EesTimesheetProject()
+                                .builder()
+                                .userId(userId)
+                                .careerId(project)
+                                .build()));
+                projectRepository.saveAll(newProjects);
+            } else {
+                // update project
+                List<EesTimesheetProject> projectToDelete = projects.stream().filter(project -> !request.getProjects().contains(project.getCareerId())).collect(Collectors.toList());
+                projectRepository.deleteAll(projectToDelete);
+                List<EesTimesheetProject> projectToUpdate = projects.stream().filter(project -> request.getProjects().contains(project.getCareerId())).collect(Collectors.toList());
+                projectRepository.saveAll(projectToUpdate);
+            }
+
+            // Save user timesheet information
             userTimeSheetRepository.save(userTimeSheet);
 
             // Also update some fields related to summary
             Optional<EesSummaryTimesheet> summary = eesSummaryTimesheetRepository.findByUserIdAndMonthAndYear(userId, EesCommonUtil.generateCurrentMonthUtil(), EesCommonUtil.generateCurrentYearUtil());
-            if(summary.isPresent()) {
+            if (summary.isPresent()) {
                 summary.get().setContractHoursClientPerWeek(contractHoursClient.get().getContractHoursId());
                 eesSummaryTimesheetRepository.save(summary.get());
             }
@@ -80,6 +104,7 @@ public class EesUserTimesheetService {
         EesUserTimeSheet userTimeSheet = null;
         if (userTimeSheetOptional.isPresent()) {
             userTimeSheet = userTimeSheetOptional.get();
+            userTimeSheet.setTimeSheetProjects(projectRepository.findAllByUserId(userId));
         }
         return userTimeSheet;
     }

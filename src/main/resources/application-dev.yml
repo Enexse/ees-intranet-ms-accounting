@@ -23,3 +23,4 @@ keycloak:
     secret: trKdGRGFZIJ5RF6jjuJQGZMGLQI6dzku
   use-resource-role-mappings: false
   bearer-only: true
+  ssl-required: none

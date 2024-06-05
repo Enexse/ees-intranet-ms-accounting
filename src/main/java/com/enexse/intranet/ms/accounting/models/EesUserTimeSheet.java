@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -28,6 +29,10 @@ public class EesUserTimeSheet {
     private String numOrder;
     private String projectName;
     private String customerId;
+
+    @ManyToMany
+    @JoinColumn(name = "user_id")
+    private List<EesTimesheetProject> timeSheetProjects;
 
     @ManyToOne
     @JoinColumn(name = "activity_id")

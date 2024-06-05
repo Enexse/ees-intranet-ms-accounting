@@ -49,5 +49,4 @@ public class EesTimesheetWorkPlaceController {
     public String getTitleByCode(@RequestParam("workPlaceCode") String workPlaceCode) {
         return timeSheetWorkPlaceService.getTitleByCode(workPlaceCode);
     }
-
 }

@@ -21,7 +21,7 @@ public class EesTimeSheetWorkTimeController {
     private EesTimesheetWorkTimeService eesTimesheetWorkTimeService;
 
     @PostMapping(EesTimesheetEndpoint.EES_INSERT_TIMESHEET_WORKTIME)
-    public ResponseEntity<Object> eesInsertTimeSheetWorktime(@RequestBody EesTimeSheetWorkTimeRequest request) {
+    public ResponseEntity<Object> eesInsertTimeSheetWorkTime(@RequestBody EesTimeSheetWorkTimeRequest request) {
         return eesTimesheetWorkTimeService.insertTimeSheetWorkTime(request);
     }
 
@@ -31,7 +31,9 @@ public class EesTimeSheetWorkTimeController {
     }
 
     @PutMapping(EesTimesheetEndpoint.EES_UPDATE_BY_CODE_TIMESHEET_WORKTIME)
-    public ResponseEntity<Object> eesUpdateTimeSheetWorktimeByCode(@PathVariable String worktimeCode, @RequestBody EesTimeSheetWorkTimeRequest request) {
+    public ResponseEntity<Object> eesUpdateTimeSheetWorkTimeByCode(
+            @PathVariable String worktimeCode,
+            @RequestBody EesTimeSheetWorkTimeRequest request) {
         return eesTimesheetWorkTimeService.updateTimeSheetWorkTimeByCode(worktimeCode, request);
     }
 
@@ -41,7 +43,7 @@ public class EesTimeSheetWorkTimeController {
     }
 
     @DeleteMapping(EesTimesheetEndpoint.EES_DELETE_BY_CODE_TIMESHEET_WORKTIME)
-    public ResponseEntity<Object> eesDeleteTimeSheetWorktimeByCode(@PathVariable String worktimeCode) {
+    public ResponseEntity<Object> eesDeleteTimeSheetWorkTimeByCode(@PathVariable String worktimeCode) {
         return eesTimesheetWorkTimeService.deleteTimeSheetWorkTimeByCode(worktimeCode);
     }
 }

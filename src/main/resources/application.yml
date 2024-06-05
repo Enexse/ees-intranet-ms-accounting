@@ -5,7 +5,7 @@ spring:
     allow-bean-definition-overriding: true
   profiles:
     active:
-      - prod
+      - ${ENVIRONMENT}
   application:
     name: EES-MS-ACCOUNTING
   jpa:

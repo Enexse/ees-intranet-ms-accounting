@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgresql-enexse-u12566.vm.elestio.app:25432/ees_ms_accounting
-    username: postgres
-    password: QLyDmxqF-SLej-Nwf7f6pZ
+    url: ${POSTGRES_URL} #jdbc:postgresql://postgresql-enexse-u12566.vm.elestio.app:25432/ees_ms_accounting
+    username: ${POSTGRES_USER} #postgres
+    password: ${POSTGRES_PASSWORD} #QLyDmxqF-SLej-Nwf7f6pZ
     driver-class-name: org.postgresql.Driver
 eureka:
   client:
@@ -16,10 +16,11 @@ eureka:
 
 #Keycloack
 keycloak:
-  realm: ees-ms-authentification
-  auth-server-url: https://keycloak-enexse-u12566.vm.elestio.app/
-  resource: ees-ms-keycloak
+  realm: ${KEYCLOAK_REALM} #ees-ms-authentification
+  auth-server-url: ${KEYCLOAK_AUTH_SERVER_URL} #https://keycloak-enexse-u12566.vm.elestio.app/
+  resource: ${KEYCLOAK_RESOURCE} #ees-ms-keycloak
   credentials:
-    secret: JbkQ9O7KpRc0HOUVJNOw5TY8dJQT4W4V
+    secret: ${KEYCLOAK_CREDENTIALS_SECRET} #JbkQ9O7KpRc0HOUVJNOw5TY8dJQT4W4V
   use-resource-role-mappings: false
   bearer-only: true
+  ssl-required: none

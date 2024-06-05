@@ -21,15 +21,30 @@ spec:
           - containerPort: 5432
         env:
           - name: POSTGRES_DB
-            value: "ees_ms_accounting"
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: postgres_db
           - name: POSTGRES_HOST
-            value: "postgresql-enexse-u12566.vm.elestio.app"
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: postgres_host
           - name: POSTGRES_PORT
-            value: "25432"
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: postgres_port
           - name: POSTGRES_USER
-            value: "postgres"
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cmmes
+                key: postgres_user
           - name: POSTGRES_PASSWORD
-            value: "QLyDmxqF-SLej-Nwf7f6pZ"
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: postgres_password
       - name: ees-ms-accounting-app
         image: enexse/ees-ms-accounting:latest # Image that will be used to containers in the cluster
         args: ["--spring.profiles.active=prod"]
@@ -37,11 +52,46 @@ spec:
         ports:
         - containerPort: 9191 # The port that the container is running on in the cluster
         env:
+          - name: POSTGRES_URL
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: postgres_url
+          - name: POSTGRES_USER
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: postgres_user
+          - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: eureka-cm
+                  key: postgres_password
           - name: EUREKA_SERVER_ADDRESS
             valueFrom:
               configMapKeyRef:
                 name: eureka-cm
                 key: eureka_service_address
+          - name: KEYCLOAK_REALM
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: keycloak_realm
+          - name: KEYCLOAK_AUTH_SERVER_URL
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: keycloak_auth_server_url
+          - name: KEYCLOAK_RESOURCE
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: keycloak_resource
+          - name: KEYCLOAK_CREDENTIALS_SECRET
+            valueFrom:
+              configMapKeyRef:
+                name: eureka-cm
+                key: keycloack_credentials_secret
 
 ---
 

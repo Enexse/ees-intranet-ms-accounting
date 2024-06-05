@@ -6,8 +6,10 @@ import com.enexse.intranet.ms.accounting.models.partials.EesSubRequest;
 import com.enexse.intranet.ms.accounting.models.partials.EesUser;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -43,6 +45,21 @@ public class EesTimesheetAppointment {
     private float hoursDay;
     private float hoursDayAbsence;
     private float overtime;
+
+    @Column(name = "team")
+    private String team;
+
+    @Column(name = "slot_time")
+    private String slotTime;
+
+    @Column(name = "entry_time")
+    private String entryTime;
+
+    @Column(name = "break_time")
+    private BigDecimal breakTime;
+
+    @Column(name = "exit_time")
+    private String exitTime;
 
     @ToString.Exclude
     @ManyToOne

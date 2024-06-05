@@ -17,6 +17,7 @@ public class EesUser implements Serializable {
     private String lastName;
     private String pseudo;
     private String personalEmail;
+    private String departmentCode;
     private String enexseEmail;
     private String status;
     private String gender;

@@ -79,4 +79,10 @@ public class EesTimesheetConstant {
     public static final String EES_ROLE_COLLABORATOR = "EES-COLLABORATOR";
     public static final String EES_ROLE_RESPONSABLE = "EES-RESPONSABLE";
     public static final String EES_DEFAULT_ROLES = "default-roles-ees-ms-authentification";
+    public static final String EES_SLOT_TIME_MORNING = "MORNING";
+    public static final String EES_SLOT_TIME_EVENING = "EVENING";
+    public static final String EES_SLOT_TIME_NIGHT = "NIGHT";
+
+    public static final String EES_CLOUDINARY_TIMESHEET_FOLDER = "Timesheet Collaborators";
+    public static final String EES_CLOUDINARY_TIMESHEET_TYPE = "EES_CLOUDINARY_TIMESHEET_TYPE";
 }

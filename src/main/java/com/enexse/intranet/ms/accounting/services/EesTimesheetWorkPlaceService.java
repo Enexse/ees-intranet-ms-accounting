@@ -1,6 +1,7 @@
 package com.enexse.intranet.ms.accounting.services;
 
 import com.enexse.intranet.ms.accounting.constants.EesTimesheetResponse;
+import com.enexse.intranet.ms.accounting.models.EesTimesheetContractHour;
 import com.enexse.intranet.ms.accounting.models.EesTimesheetWorkplace;
 import com.enexse.intranet.ms.accounting.openfeign.EesUserService;
 import com.enexse.intranet.ms.accounting.repositories.EesTimesheetWorkPlaceRepository;
@@ -13,10 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -80,7 +78,8 @@ public class EesTimesheetWorkPlaceService {
     }
 
     public List<EesTimeSheetWorkPlaceResponse> getAllTimeSheetWorkPlaces() {
-        List<EesTimesheetWorkplace> workplaces = workPlaceRepository.findAll();
+        List<EesTimesheetWorkplace> workplaces = workPlaceRepository.findAll()
+                .stream().sorted(Comparator.comparing(EesTimesheetWorkplace::getCreatedAt).reversed()).collect(Collectors.toList());
         List<EesTimeSheetWorkPlaceResponse> workplacesResponse = new ArrayList<EesTimeSheetWorkPlaceResponse>();
         workplaces.stream().map(workplace -> {
             EesTimeSheetWorkPlaceResponse response = new EesTimeSheetWorkPlaceResponse()

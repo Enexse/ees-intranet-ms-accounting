@@ -9,6 +9,9 @@ public class EesTimesheetEndpoint {
     // USERS
     public static final String EES_GET_USER_BY_ID = "/user/getByCode/{userId}";
     public static final String EES_INSERT_USER = "/user/insert";
+    public static final String EES_ATTACHMENT_FILES_USER = "/file/attachments/{userId}";
+    public static final String EES_ATTACHMENT_FILE_BY_ID_USERID = "/file/get/{id}/{userId}";
+    public static final String EES_ATTACHMENT_FILE_DELETE_BY_ID = "/file/deleteById";
 
     // CUSTOMERS
     public static final String EES_GET_CUSTOMER_BY_ID = "/customer/getById/{customerId}";
@@ -54,19 +57,27 @@ public class EesTimesheetEndpoint {
 
     // APPOINTMENT
     public static final String EES_INSERT_TIMESHEET_APPOINTMENT = "/appointment/insertAppointment";
+    public static final String EES_INSERT_MASSIVE_TIMESHEET_APPOINTMENT = "/appointment/insertMassiveAppointment";
     public static final String EES_GET_TIMESHEET_APPOINTMENT_BY_USERID = "/appointment/getByUserId";
     public static final String EES_DELETE_TIMESHEET_APPOINTMENT = "/appointment/deleteAppointment/{userId}";
     public static final String EES_UPDATE_TIMESHEET_APPOINTMENT = "/appointment/updateAppointment";
 
     // USER TIMESHEET
-    public static final String EES_UPDATE_USER = "user/update/{userId}";
-    public static final String EES_USER_TIMESHEET = "user/get/timesheet";
+    public static final String EES_UPDATE_USER = "/user/update/{userId}";
+    public static final String EES_USER_TIMESHEET = "/user/get/timesheet";
 
     // SUMMARY TIMESHEET
     public static final String EES_GET_SUMMARY_TIMESHEET = "/summary_timesheet/{userId}";
     public static final String EES_GET_ALL_SUMMARY_TIMESHEET = "/summary_timesheet/getAll";
+    public static final String EES_GET_SUMMARY_TIMESHEET_BY_USERID_YEAR = "/summary_timesheet/getById/{userId}/{year}";
+    public static final String EES_GET_SUMMARY_TIMESHEET_RESPONSE_BY_USERID_YEAR = "/summary_timesheet/response/getById/{userId}/{year}";
     public static final String EES_GET_SUMMARY_TIMESHEET_BY_USERID = "/summary_timesheet/getById/{userId}";
     public static final String EES_SUBMIT_SUMMARY_TIMESHEET_BY_USERID = "/summary_timesheet/submit/{userId}";
-    public static final String EES_GET_SUMMARY_TIMESHEET_BY_USERID_MONTH_YEAR = "/summary_timesheet/getByMonthAndYear/{userId}";
+    public static final String EES_GET_SUMMARY_TIMESHEET_BY_USERID_MONTH_YEAR = "/summary_timesheet/getByUserIdAndMonthAndYear/{userId}";
     public static final String EES_GET_PREPARE_SUMMARY_TIMESHEET = "/summary_timesheet/prepare";
+    public static final String EES_UPDATE_SUBMIT_SUMMARY_TIMESHEET_BY_USERID = "/summary_timesheet/updateByMonthAndYear/{userId}";
+    public static final String EES_ATTACHMENT_FILES_SUMMARY_TIMESHEET_BY_USERID = "/summary_timesheet/attachmentFilesByMonthAndYear/{userId}";
+    public static final String EES_GET_SUMMARY_TIMESHEET_BY_MONTH_YEAR = "/summary_timesheet/getByMonthAndYear";
+    public static final String EES_DELETE_SUMMARY_TIMESHEET_ATTACHMENT = "/summary_timesheet/delete/attachment/{id}/{userId}";
+
 }

@@ -1,6 +1,7 @@
 package com.enexse.intranet.ms.accounting.services;
 
 import com.enexse.intranet.ms.accounting.constants.EesTimesheetResponse;
+import com.enexse.intranet.ms.accounting.models.EesTimeSheetActivity;
 import com.enexse.intranet.ms.accounting.models.EesTimesheetContractHour;
 import com.enexse.intranet.ms.accounting.openfeign.EesUserService;
 import com.enexse.intranet.ms.accounting.repositories.EesTimesheetContractHourRepository;
@@ -13,10 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -76,7 +74,8 @@ public class EesTimesheetContractHourService {
     }
 
     public List<EesTimeSheetContractHourResponse> getAllTimeSheetContractHours() {
-        List<EesTimesheetContractHour> contractHours = contractHoursRepository.findAll();
+        List<EesTimesheetContractHour> contractHours = contractHoursRepository.findAll()
+                .stream().sorted(Comparator.comparing(EesTimesheetContractHour::getCreatedAt).reversed()).collect(Collectors.toList());
         List<EesTimeSheetContractHourResponse> contractHoursResponse = new ArrayList<EesTimeSheetContractHourResponse>();
         contractHours.stream().map(contractHour -> {
                     EesTimeSheetContractHourResponse response = new EesTimeSheetContractHourResponse()

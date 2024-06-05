@@ -3,9 +3,9 @@ package com.enexse.intranet.ms.accounting.controllers;
 
 import com.enexse.intranet.ms.accounting.constants.EesTimesheetConstant;
 import com.enexse.intranet.ms.accounting.constants.EesTimesheetEndpoint;
+import com.enexse.intranet.ms.accounting.models.EesTimesheetAppointment;
 import com.enexse.intranet.ms.accounting.models.partials.EesCustomer;
 import com.enexse.intranet.ms.accounting.models.partials.EesSubRequest;
-import com.enexse.intranet.ms.accounting.models.EesTimesheetAppointment;
 import com.enexse.intranet.ms.accounting.models.partials.EesUser;
 import com.enexse.intranet.ms.accounting.openfeign.EesCustomerService;
 import com.enexse.intranet.ms.accounting.openfeign.EesSubRequestService;
@@ -34,6 +34,12 @@ public class EesTimeSheetAppointmentController {
     @PostMapping(EesTimesheetEndpoint.EES_INSERT_TIMESHEET_APPOINTMENT)
     public ResponseEntity<Object> eesInsertTimeSheetAppointment(@RequestBody EesTimeSheetAppointmentRequest request) {
         return eesTimeSheetAppointmentService.insertTimeSheetAppointment(request);
+    }
+
+    @RolesAllowed(EesTimesheetConstant.EES_DEFAULT_ROLES)
+    @PostMapping(EesTimesheetEndpoint.EES_INSERT_MASSIVE_TIMESHEET_APPOINTMENT)
+    public ResponseEntity<Object> eesInsertMassiveTimeSheetAppointment(@RequestBody EesTimeSheetAppointmentRequest[] request) {
+        return eesTimeSheetAppointmentService.insertMassiveTimeSheetAppointment(request);
     }
 
     @RolesAllowed(EesTimesheetConstant.EES_DEFAULT_ROLES)
